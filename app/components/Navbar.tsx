@@ -66,7 +66,7 @@ export default function Navbar() {
         {/* Candado + CTA */}
         <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
           <a 
-            href="http://tools.triplatam.com/cotizador.html" 
+            href="https://herramientas.triplatam.com/cotizador.html" 
             target="_blank" 
             rel="noopener noreferrer" 
             title="Cotizador Interno"
