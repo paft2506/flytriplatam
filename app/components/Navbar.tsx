@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Plane } from 'lucide-react';
+import { Menu, X, Lock } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -27,69 +27,35 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-navy/95 backdrop-blur-md border-b border-white/5' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-7 h-7 bg-crimson flex items-center justify-center rounded-sm">
-            <Plane size={14} className="text-white rotate-45" />
+    <header style={{position:'fixed',top:0,left:0,right:0,zIndex:50,transition:'all 0.3s',background:scrolled?'rgba(15,28,46,0.97)':'rgba(15,28,46,0.85)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
+      <div style={{maxWidth:'1280px',margin:'0 auto',padding:'0 24px',display:'flex',alignItems:'center',justifyContent:'space-between',height:'64px'}}>
+        <Link href="/" style={{display:'flex',alignItems:'center',gap:'10px',textDecoration:'none'}}>
+          <div style={{width:'32px',height:'32px',background:'#C41E3A',borderRadius:'6px',display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <span style={{color:'white',fontSize:'16px'}}>✈</span>
           </div>
           <div>
-            <span className="text-white font-bold text-sm tracking-tight">FlyTriplatam</span>
-            <p className="font-mono text-[9px] text-gold/60 tracking-widest uppercase leading-none -mt-0.5">Aviation Intelligence Hub</p>
+            <div style={{color:'white',fontWeight:700,fontSize:'15px',letterSpacing:'-0.02em',lineHeight:1.1}}>FlyTriplatam</div>
+            <div style={{color:'rgba(255,255,255,0.4)',fontSize:'9px',letterSpacing:'0.15em',textTransform:'uppercase'}}>Aviation Intelligence Hub</div>
           </div>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav style={{display:'flex',alignItems:'center',gap:'2px'}}>
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-3 py-1.5 text-xs font-medium tracking-wide transition-colors rounded-sm ${
-                pathname === link.href
-                  ? 'text-gold bg-gold/10'
-                  : 'text-slate hover:text-white hover:bg-white/5'
-              }`}
-            >
+            <Link key={link.href} href={link.href} style={{padding:'6px 12px',fontSize:'13px',fontWeight:500,textDecoration:'none',borderRadius:'6px',color:pathname===link.href?'#C9A84C':'rgba(255,255,255,0.7)',background:pathname===link.href?'rgba(201,168,76,0.1)':'transparent'}}>
               {link.label}
             </Link>
           ))}
         </nav>
 
-        {/* CTA + Burger */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/solicitar-vuelo"
-            className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 bg-crimson text-white text-xs font-semibold tracking-wide rounded-sm hover:bg-crimson-light transition-colors"
-          >
+        <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <a href="https://triplatam.com/cotizador.html" target="_blank" rel="noopener noreferrer" title="Cotizador Interno" style={{display:'flex',alignItems:'center',justifyContent:'center',width:'36px',height:'36px',background:'rgba(255,255,255,0.06)',border:'1px solid rgba(255,255,255,0.12)',borderRadius:'8px',color:'rgba(255,255,255,0.6)',textDecoration:'none'}}>
+            <Lock size={15} />
+          </a>
+          <Link href="/solicitar-vuelo" style={{display:'inline-flex',alignItems:'center',gap:'6px',padding:'8px 18px',background:'#C41E3A',color:'white',fontSize:'13px',fontWeight:600,borderRadius:'8px',textDecoration:'none'}}>
             Solicitar Vuelo
           </Link>
-          <button onClick={() => setOpen(!open)} className="lg:hidden text-slate hover:text-white">
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </div>
       </div>
-
-      {/* Mobile Nav */}
-      {open && (
-        <div className="lg:hidden bg-navy-light border-t border-white/5">
-          <nav className="flex flex-col px-6 py-4 gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={`px-3 py-2.5 text-sm font-medium transition-colors rounded-sm ${
-                  pathname === link.href ? 'text-gold' : 'text-slate hover:text-white'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
     </header>
   );
 }
