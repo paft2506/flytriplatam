@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsApp from "./components/WhatsApp";
+import BackToTop from "./components/BackToTop";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="min-h-screen">{children}</main>
           <Footer />
           <WhatsApp />
+          <BackToTop />
         </Providers>
       </body>
     </html>
