@@ -1,38 +1,38 @@
+'use client';
 import Link from 'next/link';
 import { ArrowRight, Shield, Eye, Users, FileCheck } from 'lucide-react';
-
-const principles = [
-  { icon: Eye, title: 'Transparencia operativa', desc: 'Los procesos de evaluación son visibles y trazables. El solicitante puede entender cómo se evaluó su requerimiento y qué criterios se aplicaron.' },
-  { icon: Users, title: 'Revisión humana disponible', desc: 'Para operaciones críticas, complejas o sensibles, un experto humano revisa y valida el proceso antes de presentar opciones.' },
-  { icon: Shield, title: 'Protección de datos', desc: 'Los datos comerciales y operacionales se tratan con responsabilidad, bajo UK GDPR, con acceso limitado y flujos documentados.' },
-  { icon: FileCheck, title: 'Audit logs y trazabilidad', desc: 'Registro claro de solicitud, evaluación y propuesta. Cada operación deja una huella documental verificable.' },
-];
-
-const roadmap = [
-  { status: 'activo', label: 'Revisión humana disponible', desc: 'Escalamiento manual activo para operaciones críticas.' },
-  { status: 'activo', label: 'Audit logs básicos', desc: 'Registro de solicitudes y respuestas en cada operación.' },
-  { status: 'activo', label: 'UK GDPR compliance', desc: 'Tratamiento de datos conforme a la normativa británica.' },
-  { status: 'proceso', label: 'ISO 9001 alignment', desc: 'Procesos de calidad alineados con la norma internacional.' },
-  { status: 'roadmap', label: 'ISO/IEC 42001 certification', desc: 'Hoja de ruta hacia la certificación de sistemas de IA.' },
-  { status: 'roadmap', label: 'Explainability reports', desc: 'Reportes de explicabilidad para cada evaluación automática.' },
-];
+import { useLang } from '../context/LangContext';
 
 export default function IAResponsablePage() {
+  const { t } = useLang();
+
+  const principles = [
+    { icon: Eye, title: t('ia.p1t'), desc: t('ia.p1d') },
+    { icon: Users, title: t('ia.p2t'), desc: t('ia.p2d') },
+    { icon: Shield, title: t('ia.p3t'), desc: t('ia.p3d') },
+    { icon: FileCheck, title: t('ia.p4t'), desc: t('ia.p4d') },
+  ];
+
+  const roadmap = [
+    { status: 'activo', label: t('ia.r1l'), desc: t('ia.r1d') },
+    { status: 'activo', label: t('ia.r2l'), desc: t('ia.r2d') },
+    { status: 'activo', label: t('ia.r3l'), desc: t('ia.r3d') },
+    { status: 'proceso', label: t('ia.r4l'), desc: t('ia.r4d') },
+    { status: 'roadmap', label: t('ia.r5l'), desc: t('ia.r5d') },
+    { status: 'roadmap', label: t('ia.r6l'), desc: t('ia.r6d') },
+  ];
+
   return (
     <div className="bg-navy min-h-screen pt-24 pb-20">
       <div className="max-w-5xl mx-auto px-6">
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="accent-line w-8" />
-            <p className="font-mono text-xs tracking-widest uppercase text-gold/70">IA Responsable</p>
+            <p className="font-mono text-xs tracking-widest uppercase text-gold/70">{t('ia.tag')}</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">IA Responsable</h1>
-          <p className="text-slate leading-relaxed max-w-2xl">
-            Procesos diseñados para trazabilidad, protección de datos, revisión humana y mejora continua. La plataforma opera con controles visibles y un flujo documental pensado para entornos B2B sensibles.
-          </p>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">{t('ia.title')}</h1>
+          <p className="text-slate leading-relaxed max-w-2xl">{t('ia.desc')}</p>
         </div>
-
-        {/* Principles */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
           {principles.map((p) => (
             <div key={p.title} className="bg-navy-light border border-white/5 rounded-sm p-6 hover:border-gold/20 transition-colors group">
@@ -44,34 +44,23 @@ export default function IAResponsablePage() {
             </div>
           ))}
         </div>
-
-        {/* Design statement */}
         <div className="bg-navy-muted border border-white/5 rounded-sm p-8 mb-16">
-          <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-4">Principio de diseño</p>
+          <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-4">{t('ia.design.tag')}</p>
           <blockquote className="text-xl text-white font-medium leading-relaxed border-l-2 border-crimson pl-6">
-            &ldquo;Diseñamos el flujo para que la operación mantenga control, trazabilidad y revisión humana cuando el caso lo justifica.&rdquo;
+            &ldquo;{t('ia.design.quote')}&rdquo;
           </blockquote>
         </div>
-
-        {/* Roadmap */}
         <div className="mb-16">
-          <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-6">Estado y hoja de ruta</p>
+          <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-6">{t('ia.road.tag')}</p>
           <div className="flex flex-col gap-3">
             {roadmap.map((item) => (
               <div key={item.label} className="flex items-center gap-4 p-4 bg-navy-light border border-white/5 rounded-sm">
-                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                  item.status === 'activo' ? 'bg-green-400' :
-                  item.status === 'proceso' ? 'bg-gold' : 'bg-slate/30'
-                }`} />
+                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${item.status === 'activo' ? 'bg-green-400' : item.status === 'proceso' ? 'bg-gold' : 'bg-slate/30'}`} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 flex-wrap">
                     <p className="text-white font-semibold text-sm">{item.label}</p>
-                    <span className={`font-mono text-[10px] tracking-widest px-2 py-0.5 rounded-sm ${
-                      item.status === 'activo' ? 'text-green-400 bg-green-400/10 border border-green-400/20' :
-                      item.status === 'proceso' ? 'text-gold bg-gold/10 border border-gold/20' :
-                      'text-slate/50 bg-white/5 border border-white/5'
-                    }`}>
-                      {item.status === 'activo' ? 'Activo' : item.status === 'proceso' ? 'En proceso' : 'Roadmap'}
+                    <span className={`font-mono text-[10px] tracking-widest px-2 py-0.5 rounded-sm ${item.status === 'activo' ? 'text-green-400 bg-green-400/10 border border-green-400/20' : item.status === 'proceso' ? 'text-gold bg-gold/10 border border-gold/20' : 'text-slate/50 bg-white/5 border border-white/5'}`}>
+                      {item.status === 'activo' ? t('ia.status.active') : item.status === 'proceso' ? t('ia.status.process') : t('ia.status.roadmap')}
                     </span>
                   </div>
                   <p className="text-slate text-xs mt-0.5">{item.desc}</p>
@@ -80,10 +69,8 @@ export default function IAResponsablePage() {
             ))}
           </div>
         </div>
-
-        {/* Compliance */}
         <div className="bg-navy-light border border-white/5 rounded-sm p-8 mb-10">
-          <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-6">Registro y cumplimiento</p>
+          <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-6">{t('ia.comp.tag')}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <p className="text-white font-semibold mb-3">TripLatam Ltd</p>
@@ -94,7 +81,7 @@ export default function IAResponsablePage() {
               </div>
             </div>
             <div>
-              <p className="text-white font-semibold mb-3">Estándares</p>
+              <p className="text-white font-semibold mb-3">{t('ia.comp.std')}</p>
               <div className="flex flex-wrap gap-2">
                 {['UK GDPR', 'ISO 9001 alignment', 'ISO/IEC 42001 roadmap', 'Audit logs', 'HITL disponible'].map(s => (
                   <span key={s} className="font-mono text-[10px] tracking-wide text-gold/50 border border-gold/20 px-2 py-1 rounded-sm">{s}</span>
@@ -103,13 +90,12 @@ export default function IAResponsablePage() {
             </div>
           </div>
         </div>
-
         <div className="flex flex-wrap gap-4">
           <Link href="/como-funciona" className="inline-flex items-center gap-2 px-7 py-3.5 border border-gold/40 text-gold font-semibold text-sm tracking-wide rounded-sm hover:border-gold hover:bg-gold/10 transition-colors">
-            Ver proceso completo <ArrowRight size={14} />
+            {t('ia.btn1')} <ArrowRight size={14} />
           </Link>
           <Link href="/contacto" className="inline-flex items-center gap-2 px-7 py-3.5 text-slate text-sm hover:text-white transition-colors">
-            Contactar para más información
+            {t('ia.btn2')}
           </Link>
         </div>
       </div>
