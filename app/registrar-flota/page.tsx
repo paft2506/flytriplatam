@@ -73,7 +73,7 @@ export default function RegistrarFlotaPage() {
                 <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">{t('reg.empresa')}</label><input required className="form-input" placeholder="Sky Cargo Airlines" value={form.empresa} onChange={e => set('empresa', e.target.value)} /></div>
                 <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">{t('reg.email')}</label><input required type="email" className="form-input" placeholder="ops@skyoperator.com" value={form.email} onChange={e => set('email', e.target.value)} /></div>
                 <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">{t('reg.telefono')}</label><input className="form-input" placeholder="+1 555 000 0000" value={form.telefono} onChange={e => set('telefono', e.target.value)} /></div>
-                <div className="md:col-span-2"><label className="block text-xs text-slate/70 mb-1.5 font-medium">{t('reg.web')}</label><input type="url" className="form-input" placeholder="https://www.operador.com" value={form.web} onChange={e => set('web', e.target.value)} /></div>
+                <div className="md:col-span-2"><label className="block text-xs text-slate/70 mb-1.5 font-medium">{t('reg.web')}</label><input type="text" className="form-input" placeholder="https://www.operador.com" value={form.web} onChange={e => set('web', e.target.value)} /></div>
               </div>
             </div>
             <div>
