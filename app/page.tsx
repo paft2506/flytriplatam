@@ -31,7 +31,7 @@ export default function HomePage() {
       {/* HERO — fondo navy oscuro */}
       <section style={{ background: 'linear-gradient(135deg, rgba(15,28,46,0.85) 0%, rgba(22,34,54,0.85) 100%), url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80) center/cover no-repeat', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 24px 64px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 24px 64px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center', position: 'relative', zIndex: 1 }}>
           {/* Left */}
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px', padding: '6px 14px', marginBottom: '32px' }}>
