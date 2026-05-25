@@ -41,9 +41,9 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
           <img
-            src="/triplatam-logo.png"
+            src="/triplatam-logo-full.png"
             alt="FlyTriplatam"
-            style={{ height: '36px', width: 'auto', objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '4px 8px' }}
+            style={{ height: '48px', width: 'auto', objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '4px 8px' }}
             onError={(e) => {
               e.currentTarget.style.display = 'none';
               (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
@@ -103,7 +103,7 @@ export default function Navbar() {
           <a href="https://herramientas.triplatam.com/cotizador.html" target="_blank" rel="noopener noreferrer" title="Cotizador Interno"
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              width: '36px', height: '36px', background: 'rgba(255,255,255,0.06)',
+              width: '36px', height: '48px', background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px',
               color: 'rgba(255,255,255,0.6)', transition: 'all 0.2s', textDecoration: 'none',
             }}
