@@ -1,35 +1,40 @@
+'use client';
 import Link from 'next/link';
-import { Plane, Mail, MessageCircle } from 'lucide-react';
-
-const navLinks = [
-  { href: '/', label: 'Inicio' },
-  { href: '/solicitar-vuelo', label: 'Solicitar Vuelo' },
-  { href: '/registrar-flota', label: 'Registrar Flota' },
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/como-funciona', label: 'Cómo Funciona' },
-  { href: '/ia-responsable', label: 'IA Responsable' },
-  { href: '/empresa', label: 'Empresa' },
-  { href: '/contacto', label: 'Contacto' },
-];
+import { Mail, MessageCircle } from 'lucide-react';
+import { useLang } from '../context/LangContext';
 
 export default function Footer() {
+  const { t } = useLang();
+
+  const navLinks = [
+    { href: '/', label: t('nav.inicio') },
+    { href: '/solicitar-vuelo', label: t('nav.solicitar') },
+    { href: '/registrar-flota', label: t('nav.registrar') },
+    { href: '/servicios', label: t('nav.servicios') },
+    { href: '/como-funciona', label: t('nav.como') },
+    { href: '/ia-responsable', label: t('nav.ia') },
+    { href: '/empresa', label: t('nav.empresa') },
+    { href: '/contacto', label: t('nav.contacto') },
+  ];
+
   return (
     <footer className="bg-navy-muted border-t border-white/5 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 bg-crimson flex items-center justify-center rounded-sm">
-                <Plane size={15} className="text-white rotate-45" />
-              </div>
-              <div>
-                <span className="text-white font-bold tracking-tight">FlyTriplatam</span>
-                <p className="font-mono text-[9px] text-gold/60 tracking-widest uppercase leading-none">Aviation Intelligence Hub</p>
-              </div>
+            <Link href="/" className="flex items-center gap-3 mb-4">
+              <img
+                src="/triplatam-logo.png"
+                alt="FlyTriplatam"
+                style={{ height: '52px', width: 'auto', objectFit: 'contain' }}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
             </Link>
             <p className="text-slate text-sm leading-relaxed max-w-sm">
-              Aviation Intelligence Hub operado por TripLatam Ltd. Conectamos demanda aérea global con capacidad disponible de forma ágil, trazable y responsable.
+              {t('emp.desc')}
             </p>
             <div className="flex flex-wrap gap-2 mt-4">
               {['UK Registered', 'UK GDPR', 'ISO 9001 alignment', 'ISO/IEC 42001 roadmap'].map(badge => (
@@ -42,7 +47,9 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-4">Navegación</p>
+            <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-4">
+              {t('nav.servicios') === 'Services' ? 'Navigation' : 'Navegación'}
+            </p>
             <nav className="flex flex-col gap-2">
               {navLinks.map(link => (
                 <Link key={link.href} href={link.href} className="text-slate text-sm hover:text-white transition-colors">
@@ -54,32 +61,26 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-4">Contacto</p>
+            <p className="font-mono text-xs tracking-widest uppercase text-gold/60 mb-4">
+              {t('cont.tag')}
+            </p>
             <div className="flex flex-col gap-3">
-              <a
-                href="mailto:charter@triplatam.com?subject=Solicitud de vuelo - FlyTriplatam"
-                className="flex items-center gap-2 text-slate text-sm hover:text-white transition-colors"
-              >
+              <a href="mailto:charter@triplatam.com?subject=Solicitud de vuelo - FlyTriplatam"
+                className="flex items-center gap-2 text-slate text-sm hover:text-white transition-colors">
                 <Mail size={13} className="text-gold/60" />
-                Solicitud de vuelo
+                {t('cont.c1t')}
               </a>
-              <a
-                href={`https://wa.me/56976711418?text=Hola FlyTriplatam, necesito información sobre vuelos charter.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate text-sm hover:text-white transition-colors"
-              >
+              <a href="https://wa.me/56976711418?text=Hola FlyTriplatam" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 text-slate text-sm hover:text-white transition-colors">
                 <MessageCircle size={13} className="text-gold/60" />
-                WhatsApp operativo
+                {t('cont.c2t')}
               </a>
-              <a
-                href="mailto:partnership@triplatam.com?subject=Alianza operacional - FlyTriplatam"
-                className="flex items-center gap-2 text-slate text-sm hover:text-white transition-colors"
-              >
+              <a href="mailto:partnership@triplatam.com?subject=Alianza operacional - FlyTriplatam"
+                className="flex items-center gap-2 text-slate text-sm hover:text-white transition-colors">
                 <Mail size={13} className="text-gold/60" />
-                Alianzas operacionales
+                {t('cont.c3t')}
               </a>
-              <p className="text-slate/50 text-xs mt-1">Respondemos por los canales oficiales del sitio.</p>
+              <p className="text-slate/50 text-xs mt-1">{t('cont.desc')}</p>
             </div>
           </div>
         </div>
