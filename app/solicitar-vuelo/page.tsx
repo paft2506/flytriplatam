@@ -12,7 +12,7 @@ const acmiDuraciones = ['1 a 3 meses', '3 a 6 meses', '6 a 12 meses', 'Más de 1
 export default function SolicitarVueloPage() {
   const [form, setForm] = useState({
     nombre: '', empresa: '', email: '', telefono: '',
-    origen: '', destino: '', fecha: '', pasajeros: '',
+    origen: '', destino: '', trayecto: 'One Way (OW)', fecha: '', pasajeros: '',
     carga: '', tipo: '', urgencia: '', descripcion: '',
     acmi_tipo: '', acmi_aircraft: '', acmi_bhr: '',
     acmi_duracion: '', acmi_aoc: '', acmi_base: ''
@@ -107,9 +107,16 @@ export default function SolicitarVueloPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">Origen *</label><input required className="form-input" placeholder="SCL — Santiago, Chile" value={form.origen} onChange={e => set('origen', e.target.value)} /></div>
                   <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">Destino *</label><input required className="form-input" placeholder="GRU — São Paulo, Brasil" value={form.destino} onChange={e => set('destino', e.target.value)} /></div>
+                  <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">Trayecto *</label>
+                    <select required className="form-input" value={form.trayecto} onChange={e => set('trayecto', e.target.value)}>
+                      <option value="One Way (OW)">One Way (OW)</option>
+                      <option value="Round Trip (RT)">Round Trip (RT)</option>
+                      <option value="Multi-leg">Multi-leg</option>
+                    </select>
+                  </div>
                   <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">Fecha estimada *</label><input required type="date" className="form-input" value={form.fecha} onChange={e => set('fecha', e.target.value)} /></div>
                   <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">Pasajeros / PAX</label><input type="number" className="form-input" placeholder="120" value={form.pasajeros} onChange={e => set('pasajeros', e.target.value)} /></div>
-                  <div className="md:col-span-2"><label className="block text-xs text-slate/70 mb-1.5 font-medium">Carga / restricciones especiales</label><input className="form-input" placeholder="Tonelaje, tipo de carga, temperatura, hazmat..." value={form.carga} onChange={e => set('carga', e.target.value)} /></div>
+                  <div><label className="block text-xs text-slate/70 mb-1.5 font-medium">Carga / restricciones especiales</label><input className="form-input" placeholder="Tonelaje, tipo de carga, temperatura, hazmat..." value={form.carga} onChange={e => set('carga', e.target.value)} /></div>
                 </div>
               </div>
             )}
