@@ -3,12 +3,11 @@ import { useLang } from '../context/LangContext';
 
 export default function BackToTop() {
   const { lang } = useLang();
-  const label = lang === 'es' ? '↑ Inicio' : '↑ Top';
+  const label = lang === 'es' ? '\u2191 Inicio' : '\u2191 Top';
 
   return (
-    
-      href="#"
-      onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       style={{
         position: 'fixed', bottom: '24px', left: '24px', zIndex: 40,
         display: 'inline-flex', alignItems: 'center', gap: '6px',
@@ -20,20 +19,12 @@ export default function BackToTop() {
         fontSize: '12px',
         fontFamily: 'DM Mono, monospace',
         letterSpacing: '0.08em',
-        textDecoration: 'none',
+        cursor: 'pointer',
         backdropFilter: 'blur(8px)',
         transition: 'all 0.2s',
       }}
-      onMouseEnter={e => {
-        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(201,168,76,0.4)';
-        (e.currentTarget as HTMLElement).style.color = '#C9A84C';
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.15)';
-        (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)';
-      }}
     >
       {label}
-    </a>
+    </button>
   );
 }
