@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type Lang = 'es' | 'en';
 interface LangContextType { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string; }
@@ -361,8 +361,19 @@ const LangContext = createContext<LangContextType>({ lang: 'es', setLang: () => 
 
 export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('es');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('flytriplatam-lang') as Lang | null;
+    if (saved === 'es' || saved === 'en') setLang(saved);
+  }, []);
+
+  const handleSetLang = (l: Lang) => {
+    setLang(l);
+    localStorage.setItem('flytriplatam-lang', l);
+  };
+
   const t = (key: string) => translations[lang][key] ?? key;
-  return <LangContext.Provider value={{ lang, setLang, t }}>{children}</LangContext.Provider>;
+  return <LangContext.Provider value={{ lang, setLang: handleSetLang, t }}>{children}</LangContext.Provider>;
 }
 
 export const useLang = () => useContext(LangContext);
