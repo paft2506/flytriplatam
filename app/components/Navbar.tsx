@@ -43,7 +43,7 @@ export default function Navbar() {
           <img
             src="/triplatam-logo.png"
             alt="FlyTriplatam"
-            style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+            style={{ height: '36px', width: 'auto', objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '4px 8px' }}
             onError={(e) => {
               e.currentTarget.style.display = 'none';
               (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
