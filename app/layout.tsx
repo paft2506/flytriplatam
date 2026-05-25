@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsApp from "./components/WhatsApp";
+import { LangProvider } from "./context/LangContext";
 
 export const metadata: Metadata = {
   title: "FlyTriplatam — Aviation Intelligence Hub",
@@ -22,10 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        <WhatsApp />
+        <LangProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <WhatsApp />
+        </LangProvider>
       </body>
     </html>
   );
